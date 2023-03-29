@@ -14,6 +14,8 @@ public class Tablero {
 		return casillas[coord.getPosX()][coord.getPosY()];
 	}
 
+
+
 	public Tablero(int filas, int columnas) {
 		assert filas > 0;
 		assert columnas > 0;
@@ -24,7 +26,13 @@ public class Tablero {
 			}
 		}
 	}
+	public Casilla[][] getCasillas() {
+		return casillas;
+	}
 
+	public void setCasillas(Casilla[][] casillas) {
+		this.casillas = casillas;
+	}
 	public int getAlto() {
 		return casillas.length;
 	}
