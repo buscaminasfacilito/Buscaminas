@@ -20,12 +20,23 @@ public class TableroAleatorio extends Tablero {
 	}
 
 	public void contarMinasAlrededor(List<Coordenada> posiciones) {
-		// TODO
+
 	}
 
 	public boolean[][] getCasillasDesveladas() {
+		boolean[][] tableroDesveladas = new boolean[getAncho()][getAlto()];
+		for (int i = 0; i < getCasillas().length; i++) {
+			for (int j = 0; j < getCasillas()[0].length; j++) {
 
-		return null;
+				if (getCasilla(new Coordenada(i, j)).isVelada()) {
+					tableroDesveladas[i][j] = false;
+				} else {
+					tableroDesveladas[i][j] = true;
+				}
+
+			}
+		}
+		return tableroDesveladas;
 	}
 
 	public void desvelarContiguas(Coordenada lugar) {
@@ -52,7 +63,12 @@ public class TableroAleatorio extends Tablero {
 	}
 
 	private boolean isInToBounds(Coordenada coordenada) {
-		// TODO Auto-generated method stub
+		int alto = getAlto();
+		int ancho = getAncho();
+		if (coordenada.getPosX() <= ancho && coordenada.getPosX() >= 0 && coordenada.getPosY() <= alto
+				&& coordenada.getPosY() >= 0) {
+			return true;
+		}
 		return false;
 	}
 
