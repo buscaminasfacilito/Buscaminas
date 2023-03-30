@@ -65,7 +65,7 @@ public class TableroAleatorio extends Tablero {
 	private boolean isInToBounds(Coordenada coordenada) {
 		int alto = getAlto();
 		int ancho = getAncho();
-		if (coordenada.getPosX() <= ancho && coordenada.getPosX() >= 0 && coordenada.getPosY() <= alto
+		if (coordenada.getPosX() < ancho && coordenada.getPosX() >= 0 && coordenada.getPosY() < alto
 				&& coordenada.getPosY() >= 0) {
 			return true;
 		}
