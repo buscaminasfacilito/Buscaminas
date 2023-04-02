@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import utiles.Utiles;
 
@@ -9,9 +10,10 @@ public class TableroAleatorio extends Tablero {
 	private boolean terminado = false;
 
 	// Constructor aleatorio
-	public TableroAleatorio(int lado, int minas) {
+	public TableroAleatorio(int lado, int minas, int[] posInicial) {
 		super(lado);
-		List<Coordenada> posiciones = generaAleatorio(minas, lado);
+		generaAleatorio(minas, lado, posInicial);
+		showMinasTabloero();
 	}
 
 	// constructor no aleatorio
@@ -72,10 +74,34 @@ public class TableroAleatorio extends Tablero {
 		return false;
 	}
 
-	public List<Coordenada> generaAleatorio(int minas, int longitud) {
-		// TODO
-		return null;
+	public void generaAleatorio(int minas, int longitud, int[] posInicial) {
+		Random rnd = new Random();
+		int i=0;
+		while(i<minas) {
+			int fila = rnd.nextInt(longitud);
+			int columna = rnd.nextInt(longitud);
+			Coordenada coordenadaRnd = new Coordenada(fila, columna);
+			if(!getCasilla(coordenadaRnd).isMina() && ((posInicial[0]<fila-1 || posInicial[0]>fila+1) || (posInicial[1]<columna-1 || posInicial[1]>columna+1))) {
+				getCasilla(coordenadaRnd).setMina(true);
+				i++;
+			}
+			
+		}
+		
+		
 
+	}
+
+	public void showMinasTabloero() {
+		int value;
+		for (int i = 0; i < getCasillas().length; i++) {
+			for (int j = 0; j < getCasillas()[0].length; j++) {
+				if(getCasilla(new Coordenada(i, j)).isMina()) value = 1;
+				else value = 0;
+				System.out.print(value + "|");
+			}
+			System.out.println();
+		}
 	}
 
 }
