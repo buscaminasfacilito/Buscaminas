@@ -55,6 +55,7 @@ public class UI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
+		
 		JPanel panel = new JPanel();
 		contentPane.add(panel);
 		
