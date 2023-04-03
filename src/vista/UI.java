@@ -34,6 +34,12 @@ import javax.swing.JDesktopPane;
 import java.awt.Panel;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
+import javax.swing.JMenuItem;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UI extends JFrame {
 
@@ -47,73 +53,49 @@ public class UI extends JFrame {
 		setTitle("Buscaminas\r\n");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\angel\\Downloads\\MINA.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1920, 1080);
+		setBounds(100, 100, 740, 533);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(new Color(128, 128, 128));
+		menuBar.setMargin(new Insets(0, 0, 0, 3));
+		setJMenuBar(menuBar);
+		
+		JMenu mmSelectorDificultad = new JMenu("Dificultad");
+		menuBar.add(mmSelectorDificultad);
+		
+		JMenuItem mmFacil = new JMenuItem("Facil");
+		mmSelectorDificultad.add(mmFacil);
+		
+		JMenuItem mmMedio = new JMenuItem("Medio");
+		mmSelectorDificultad.add(mmMedio);
+		
+		JMenuItem mnDificil = new JMenuItem("Dificil");
+		mmSelectorDificultad.add(mnDificil);
+		
+		JButton btnBotonInicio = new JButton("Iniciar");
+		btnBotonInicio.setBackground(new Color(128, 128, 128));
+		btnBotonInicio.setVerticalAlignment(SwingConstants.TOP);
+		btnBotonInicio.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnBotonInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		menuBar.add(btnBotonInicio);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(128, 128, 128));
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		
-		JPanel panel = new JPanel();
-		contentPane.add(panel);
-		
-		JPanel panelSupletorio = new JPanel();
-		
-		JPanel panel_1 = new JPanel();
+		JLabel Mensajes = new JLabel("Aqui_va_un_mensaje");
+		Mensajes.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		Mensajes.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(Mensajes, BorderLayout.NORTH);
 		
 		JPanel panelMinador = new JPanel();
 		panelMinador.setBackground(new Color(128, 128, 128));
-		
-		JLabel lblMensaje = new JLabel("MENSAJE_VICTORIA");
-		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
-		GroupLayout gl_panelSupletorio = new GroupLayout(panelSupletorio);
-		gl_panelSupletorio.setHorizontalGroup(
-			gl_panelSupletorio.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelSupletorio.createSequentialGroup()
-					.addGroup(gl_panelSupletorio.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelSupletorio.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panelMinador, GroupLayout.DEFAULT_SIZE, 1518, Short.MAX_VALUE))
-						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 1518, Short.MAX_VALUE))
-					.addContainerGap())
-				.addGroup(Alignment.TRAILING, gl_panelSupletorio.createSequentialGroup()
-					.addContainerGap(559, Short.MAX_VALUE)
-					.addComponent(lblMensaje, GroupLayout.PREFERRED_SIZE, 459, GroupLayout.PREFERRED_SIZE)
-					.addGap(520))
-		);
-		gl_panelSupletorio.setVerticalGroup(
-			gl_panelSupletorio.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelSupletorio.createSequentialGroup()
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblMensaje, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panelMinador, GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_panelSupletorio.setAutoCreateContainerGaps(true);
-		gl_panelSupletorio.setAutoCreateGaps(true);
-		panel_1.setLayout(new GridLayout(0, 2, 0, 0));
-		
-		JLabel lblNewLabel = new JLabel("DIFICULTAD:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 31));
-		panel_1.add(lblNewLabel);
-		
-		JComboBox MenuDicultad = new JComboBox();
-		panel_1.add(MenuDicultad);
-		panelSupletorio.setLayout(gl_panelSupletorio);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(panelSupletorio, GroupLayout.PREFERRED_SIZE, 1538, GroupLayout.PREFERRED_SIZE)
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(panelSupletorio, GroupLayout.PREFERRED_SIZE, 843, GroupLayout.PREFERRED_SIZE)
-		);
-		panel.setLayout(gl_panel);
+		contentPane.add(panelMinador, BorderLayout.CENTER);
 		
 		
 	}
