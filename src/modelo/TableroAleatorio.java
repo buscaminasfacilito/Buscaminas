@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -10,10 +11,8 @@ public class TableroAleatorio extends Tablero {
 	private boolean terminado = false;
 
 	// Constructor aleatorio
-	public TableroAleatorio(int lado, int minas, int[] posInicial) {
+	public TableroAleatorio(int lado) {
 		super(lado);
-		generaAleatorio(minas, lado, posInicial);
-		showMinasTabloero();
 	}
 
 	// constructor no aleatorio
@@ -52,7 +51,7 @@ public class TableroAleatorio extends Tablero {
 					for (int i = lugar.getPosX() - 1; i <= lugar.getPosX() + 1; i++) {
 						for (int j = lugar.getPosY() - 1; j <= lugar.getPosY() + 1; j++) {
 							Coordenada coordenada = new Coordenada(i, j);
-							if (isInToBounds(coordenada)) {
+							if (isInToBounds(coordenada) && getCasilla(coordenada).getMinasAlrededor()==0) {
 								desvelarContiguas(coordenada);
 							}
 						}
@@ -74,25 +73,35 @@ public class TableroAleatorio extends Tablero {
 		return false;
 	}
 
-	public void generaAleatorio(int minas, int longitud, int[] posInicial) {
+	public void generaAleatorio(int minas, Coordenada posInicial) {
 		Random rnd = new Random();
 		int i=0;
 		while(i<minas) {
-			int fila = rnd.nextInt(longitud);
-			int columna = rnd.nextInt(longitud);
+			int fila = rnd.nextInt(getAlto());
+			int columna = rnd.nextInt(getAncho());
 			Coordenada coordenadaRnd = new Coordenada(fila, columna);
-			if(!getCasilla(coordenadaRnd).isMina() && ((posInicial[0]<fila-1 || posInicial[0]>fila+1) || (posInicial[1]<columna-1 || posInicial[1]>columna+1))) {
+			if(!getCasilla(coordenadaRnd).isMina() && ((posInicial.getPosX()<fila-1 || posInicial.getPosX()>fila+1) || (posInicial.getPosY()<columna-1 || posInicial.getPosY()>columna+1))) {
 				getCasilla(coordenadaRnd).setMina(true);
 				i++;
+				sumarMinaEnContiguas(coordenadaRnd);
 			}
-			
 		}
-		
-		
-
+	}
+	
+	public void sumarMinaEnContiguas(Coordenada coordenadaConMina) {
+		int x = coordenadaConMina.getPosX();
+		int y = coordenadaConMina.getPosY();
+		for (int i = x-1; i <= x+1; i++) {
+			for (int j = y-1; j <= y+1; j++) {
+				Coordenada aux = new Coordenada(i, j);
+				if(isInToBounds(aux)) {
+					getCasilla(aux).sumarMina();;
+				}
+			}
+		}
 	}
 
-	public void showMinasTabloero() {
+	public void showMinasTablero() {
 		int value;
 		for (int i = 0; i < getCasillas().length; i++) {
 			for (int j = 0; j < getCasillas()[0].length; j++) {
@@ -103,5 +112,25 @@ public class TableroAleatorio extends Tablero {
 			System.out.println();
 		}
 	}
+	
+	public void showNumeroMinasContiguas() {
+		for (int i = 0; i < getCasillas().length; i++) {
+			for (int j = 0; j < getCasillas()[0].length; j++) {
+				System.out.print(getCasilla(new Coordenada(i, j)).getMinasAlrededor()+ "|");
+			}
+			System.out.println();
+		}
+	}
+	
+	public void showCasillasDesveladas() {
+		for (int i = 0; i < getCasillas().length; i++) {
+			for (int j = 0; j < getCasillas()[0].length; j++) {
+				if(getCasilla(new Coordenada(i, j)).isVelada()) System.out.print("*|");
+				else System.out.print(" |");
+			}
+			System.out.println();
+		}
 
+	}
+			
 }
