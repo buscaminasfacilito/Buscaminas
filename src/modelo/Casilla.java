@@ -34,6 +34,9 @@ public class Casilla {
 	public void setMinasAlrededor(int minasAlrededor) {
 		this.minasAlrededor = minasAlrededor;
 	}
+	public void sumarMina() {
+		this.minasAlrededor++;
+	}
 	@Override
 	public String toString() {
 		return String.valueOf(mina);
