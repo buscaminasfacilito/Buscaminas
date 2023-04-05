@@ -23,8 +23,8 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
-import modelo.BontoncCasilla;
-import modelo.Botonera;
+import controlador.BontonCasilla;
+import controlador.Botonera;
 import modelo.Dificultad;
 
 import javax.swing.GroupLayout;
@@ -63,7 +63,8 @@ public class UI extends JFrame {
 		setTitle("Buscaminas\r\n");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\angel\\git\\Buscaminas-1\\src\\MINA.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 740, 533);
+		setBounds(100, 100, 400, 600);
+		setResizable(false);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(128, 128, 128));
@@ -98,25 +99,10 @@ public class UI extends JFrame {
 		Mensajes.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(Mensajes, BorderLayout.NORTH);
 		
-		Botonera panelMinador = new Botonera();
-	
+		Botonera panelMinador = new Botonera(Dificultad.medio);
+		
 		panelMinador.setBackground(new Color(128, 128, 128));
 		contentPane.add(panelMinador, BorderLayout.CENTER);
-		panelMinador.setLayout(new GridLayout(dificultad.getLongitud(), dificultad.getLongitud(),0 , 0));
-		primerpanel(dificultad,panelMinador);
-		
-	}
-	private void primerpanel(Dificultad dificultad, JPanel panel) {
-		for (int i=0;i<dificultad.getLongitud();i++) {
-			for(int j=0;j<dificultad.getLongitud();j++) {
-				BontoncCasilla button = new BontoncCasilla();
-				button.setBackground(new Color(112, 112, 112));
-				button.setBorder(new LineBorder(new Color(255,100, 255)));
-				panel.add(button);
-			}
-			
-			
-		}
 		
 	}
 	

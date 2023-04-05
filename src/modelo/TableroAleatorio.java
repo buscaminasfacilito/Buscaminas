@@ -125,9 +125,16 @@ public class TableroAleatorio extends Tablero {
 	public void showCasillasDesveladas() {
 		for (int i = 0; i < getCasillas().length; i++) {
 			for (int j = 0; j < getCasillas()[0].length; j++) {
-				if(getCasilla(new Coordenada(i, j)).isVelada()) System.out.print("*|");
-				else System.out.print(" |");
-			}
+				if(getCasilla(new Coordenada(i, j)).isMina()) {
+					System.out.print("*|");
+				}else {
+					if(getCasilla(new Coordenada(i, j)).isVelada()) System.out.print("*|");
+					else {
+						if(getCasilla(new Coordenada(i, j)).getMinasAlrededor()==0) {System.out.print(" |");}
+						else System.out.print(getCasilla(new Coordenada(i, j)).getMinasAlrededor()+"|");}
+					}
+					
+				}
 			System.out.println();
 		}
 
