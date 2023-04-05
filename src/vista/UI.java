@@ -52,12 +52,14 @@ import java.awt.event.ActionEvent;
 
 
 public class UI extends JFrame {
-	Dificultad dificultad = Dificultad.facil;
+	
+	private JMenuItem mmFacil;
+	private JMenuItem mmMedio;
+	private JMenuItem mnDificil;
+	private Botonera panelMinador;
+	
 	private JPanel contentPane;
 
-	/**
-	 * Create the frame.
-	 */
 	public UI() {
 		setBackground(new Color(128, 128, 128));
 		setTitle("Buscaminas\r\n");
@@ -75,14 +77,14 @@ public class UI extends JFrame {
 		mmSelectorDificultad.setBackground(new Color(128, 128, 128));
 		menuBar.add(mmSelectorDificultad);
 		
-		JMenuItem mmFacil = new JMenuItem("Facil");
+		this.mmFacil = new JMenuItem("Facil");
 		
 		mmSelectorDificultad.add(mmFacil);
 		
-		JMenuItem mmMedio = new JMenuItem("Medio");
+		this.mmMedio = new JMenuItem("Medio");
 		mmSelectorDificultad.add(mmMedio);
 		
-		JMenuItem mnDificil = new JMenuItem("Dificil");
+		this.mnDificil = new JMenuItem("Dificil");
 		mmSelectorDificultad.add(mnDificil);
 		
 		JMenu mnNewMenu = new JMenu("Inicio");
@@ -99,7 +101,7 @@ public class UI extends JFrame {
 		Mensajes.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(Mensajes, BorderLayout.NORTH);
 		
-		Botonera panelMinador = new Botonera(Dificultad.medio);
+		panelMinador = new Botonera(Dificultad.medio);
 		
 		panelMinador.setBackground(new Color(128, 128, 128));
 		contentPane.add(panelMinador, BorderLayout.CENTER);
@@ -109,4 +111,27 @@ public class UI extends JFrame {
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		
 	}
+
+	public JMenuItem[] getDifficultyButton() {
+		return new JMenuItem[]{mmFacil,mmMedio,mnDificil};
+	}
+
+	public Botonera getPanelMinador() {
+		return panelMinador;
+	}
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -22,8 +22,10 @@ public class Botonera extends JPanel {
 	}
 	public void crearBotonera(Dificultad dificultad) {
 		removeAll();
-		setLayout(new GridLayout(dificultad.getLongitud(), dificultad.getLongitud(),0 , 0));
+		
 		this.botones = new BontonCasilla[dificultad.getLongitud()][dificultad.getLongitud()];
+		
+		setLayout(new GridLayout(dificultad.getLongitud(), dificultad.getLongitud(),0 , 0));
 		
 		for (int i=0;i<dificultad.getLongitud();i++) {
 			for(int j=0;j<dificultad.getLongitud();j++) {
@@ -35,6 +37,8 @@ public class Botonera extends JPanel {
 		
 		}
 	}
+	
+	
 	
 	public BontonCasilla[][] getBotones() {
 		return botones;
