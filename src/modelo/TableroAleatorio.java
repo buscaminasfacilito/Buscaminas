@@ -51,15 +51,15 @@ public class TableroAleatorio extends Tablero {
 					for (int i = lugar.getPosX() - 1; i <= lugar.getPosX() + 1; i++) {
 						for (int j = lugar.getPosY() - 1; j <= lugar.getPosY() + 1; j++) {
 							Coordenada coordenada = new Coordenada(i, j);
-							if (isInToBounds(coordenada) && getCasilla(coordenada).getMinasAlrededor()==0) {
+							int x = lugar.getPosX();
+							int y = lugar.getPosY();
+							if (isInToBounds(coordenada) && Math.abs((Math.abs(x-i)-Math.abs(y-j)))<2) {
 								desvelarContiguas(coordenada);
 							}
 						}
-
 					}
 				}
 			}
-
 		}
 	}
 
