@@ -6,10 +6,10 @@ import javax.swing.JButton;
 
 import modelo.Coordenada;
 
-public class BontonCasilla extends JButton {
+public class BotonCasilla extends JButton {
 	private Coordenada coordenada;
 
-	public BontonCasilla(Coordenada coordenada) {
+	public BotonCasilla(Coordenada coordenada) {
 		super();
 		this.coordenada = coordenada;
 	

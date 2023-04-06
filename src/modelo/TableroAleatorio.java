@@ -21,7 +21,7 @@ public class TableroAleatorio extends Tablero {
 	}
 
 	public void contarMinasAlrededor(List<Coordenada> posiciones) {
-
+		
 	}
 
 	public boolean[][] getCasillasDesveladas() {
@@ -113,6 +113,14 @@ public class TableroAleatorio extends Tablero {
 		}
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	//METODOS DE PRUEBA PARA PROBAR EN UN MAIN
 	public void showNumeroMinasContiguas() {
 		for (int i = 0; i < getCasillas().length; i++) {
 			for (int j = 0; j < getCasillas()[0].length; j++) {
@@ -123,6 +131,18 @@ public class TableroAleatorio extends Tablero {
 	}
 	
 	public void showCasillasDesveladas() {
+		for (int i = 0; i < getCasillas().length; i++) {
+			for (int j = 0; j < getCasillas()[0].length; j++) {
+				if(getCasilla(new Coordenada(i, j)).isVelada()) System.out.print("*|");
+				else {
+					System.out.print(" |");}
+					
+				}
+			System.out.println();
+		}
+
+	}
+	public void showTableroFinal() {
 		for (int i = 0; i < getCasillas().length; i++) {
 			for (int j = 0; j < getCasillas()[0].length; j++) {
 				if(getCasilla(new Coordenada(i, j)).isMina()) {
