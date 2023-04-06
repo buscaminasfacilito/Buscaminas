@@ -23,7 +23,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
-import controlador.BontonCasilla;
+import controlador.BotonCasilla;
 import controlador.Botonera;
 import modelo.Dificultad;
 

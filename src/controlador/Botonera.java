@@ -13,7 +13,7 @@ import modelo.Coordenada;
 import modelo.Dificultad;
 
 public class Botonera extends JPanel {
-	private BontonCasilla[][] botones;
+	private BotonCasilla[][] botones;
 
 	public Botonera(Dificultad dificultad) {
 		super();
@@ -23,13 +23,13 @@ public class Botonera extends JPanel {
 	public void crearBotonera(Dificultad dificultad) {
 		removeAll();
 		
-		this.botones = new BontonCasilla[dificultad.getLongitud()][dificultad.getLongitud()];
+		this.botones = new BotonCasilla[dificultad.getLongitud()][dificultad.getLongitud()];
 		
 		setLayout(new GridLayout(dificultad.getLongitud(), dificultad.getLongitud(),0 , 0));
 		
 		for (int i=0;i<dificultad.getLongitud();i++) {
 			for(int j=0;j<dificultad.getLongitud();j++) {
-				botones[i][j] = new BontonCasilla(new Coordenada(i, j));
+				botones[i][j] = new BotonCasilla(new Coordenada(i, j));
 				botones[i][j].setBackground(new Color(112, 112, 112));
 				botones[i][j].setBorder(new LineBorder(new Color(255,100, 255)));
 				add(botones[i][j]);
@@ -40,8 +40,12 @@ public class Botonera extends JPanel {
 	
 	
 	
-	public BontonCasilla[][] getBotones() {
+	public BotonCasilla[][] getBotones() {
 		return botones;
+	}
+	
+	public BotonCasilla getBoton(Coordenada cord) {
+		return botones[cord.getPosX()][cord.getPosY()];
 	}
 	
 	
