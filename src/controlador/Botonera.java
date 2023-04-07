@@ -1,9 +1,12 @@
 package controlador;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -14,7 +17,8 @@ import modelo.Dificultad;
 
 public class Botonera extends JPanel {
 	private BotonCasilla[][] botones;
-
+	private Color base = new Color(200,200,200);
+	private Color hovered = new Color(base.getRed()-50,base.getGreen()-50,base.getBlue()-50);
 	public Botonera(Dificultad dificultad) {
 		super();
 		crearBotonera(dificultad);
@@ -30,8 +34,9 @@ public class Botonera extends JPanel {
 		for (int i=0;i<dificultad.getLongitud();i++) {
 			for(int j=0;j<dificultad.getLongitud();j++) {
 				botones[i][j] = new BotonCasilla(new Coordenada(i, j));
-				botones[i][j].setBackground(new Color(112, 112, 112));
-				botones[i][j].setBorder(new LineBorder(new Color(255,100, 255)));
+				botones[i][j].setBackground(base);
+				botones[i][j].setBorder(BorderFactory.createBevelBorder(0));
+				botones[i][j].setFont(new Font("Arial",Font.CENTER_BASELINE,25));
 				add(botones[i][j]);
 			}
 		
@@ -46,6 +51,14 @@ public class Botonera extends JPanel {
 	
 	public BotonCasilla getBoton(Coordenada cord) {
 		return botones[cord.getPosX()][cord.getPosY()];
+	}
+	
+	public void setHover(BotonCasilla boton) {
+		boton.setBackground(hovered);
+	}
+	
+	public void quitHover(BotonCasilla boton) {
+		boton.setBackground(base);
 	}
 	
 	

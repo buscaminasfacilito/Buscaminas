@@ -63,7 +63,7 @@ public class UI extends JFrame {
 	public UI() {
 		setBackground(new Color(128, 128, 128));
 		setTitle("Buscaminas\r\n");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\angel\\git\\Buscaminas-1\\src\\MINA.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\src\\MINA.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 600);
 		setResizable(false);
@@ -123,7 +123,14 @@ public class UI extends JFrame {
 	public JPanel getContentPane() {
 		return contentPane;
 	}
-
+	
+	public void setHover(BotonCasilla boton) {
+		panelMinador.setHover(boton);
+	}
+	
+	public void quitHover(BotonCasilla boton) {
+		panelMinador.quitHover(boton);
+	}
 	
 	
 	
