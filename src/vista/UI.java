@@ -111,7 +111,7 @@ public class UI extends JFrame {
 			for(int j=0;j<dificultad.getLongitud();j++) {
 				BontoncCasilla button = new BontoncCasilla();
 				button.setBackground(new Color(112, 112, 112));
-				button.setBorder(new LineBorder(new Color(255,100, 255)));
+				button.setBorder(new LineBorder(new Color(255,255,255)));
 				panel.add(button);
 			}
 			
