@@ -15,6 +15,7 @@ public class BotonCasilla extends JButton {
 	
 	}
 	
+	
 	public Coordenada getCoordenada() {
 		return coordenada;
 	}

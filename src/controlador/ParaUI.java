@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,7 +12,9 @@ import modelo.Dificultad;
 import modelo.GestionTablero;
 import modelo.Tablero;
 import modelo.TableroAleatorio;
+import vista.Derrota;
 import vista.UI;
+import vista.Victoria;
 
 public class ParaUI extends UI{
 	
@@ -40,6 +43,7 @@ public class ParaUI extends UI{
 					//SI ESTA DESVELADA Y ES BOMBA
 					if(miTablero.getCasilla(coordenadaActual).isMina()) {
 						getPanelMinador().getBoton(coordenadaActual).setText("BO");
+						MostrarDerrota(null);
 					}//SI ESTA DESVELADA Y NO ES BOMBA
 					else {
 						int minasAlrededor = miTablero.getCasilla(coordenadaActual).getMinasAlrededor();
@@ -108,6 +112,32 @@ public class ParaUI extends UI{
 			}
 		}
 	}
+	public static void MostrarVictoria(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Victoria frame = new Victoria();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	public static void MostrarDerrota(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Derrota frame = new Derrota();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+
 	
 	
 	

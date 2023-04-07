@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -31,7 +32,8 @@ public class Botonera extends JPanel {
 			for(int j=0;j<dificultad.getLongitud();j++) {
 				botones[i][j] = new BotonCasilla(new Coordenada(i, j));
 				botones[i][j].setBackground(new Color(112, 112, 112));
-				botones[i][j].setBorder(new LineBorder(new Color(255,100, 255)));
+				botones[i][j].setBorder(new LineBorder(new Color(255,255, 255)));
+				botones[i][j].setBorder(BorderFactory.createBevelBorder(0));
 				add(botones[i][j]);
 			}
 		

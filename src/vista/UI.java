@@ -25,6 +25,7 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import controlador.BotonCasilla;
 import controlador.Botonera;
+import modelo.Coordenada;
 import modelo.Dificultad;
 
 import javax.swing.GroupLayout;
@@ -68,6 +69,7 @@ public class UI extends JFrame {
 		setBounds(100, 100, 400, 600);
 		setResizable(false);
 		
+		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(128, 128, 128));
 		menuBar.setMargin(new Insets(0, 0, 0, 3));
@@ -106,23 +108,14 @@ public class UI extends JFrame {
 		panelMinador.setBackground(new Color(128, 128, 128));
 		contentPane.add(panelMinador, BorderLayout.CENTER);
 
-		panelMinador.setLayout(new GridLayout(dificultad.getLongitud(), dificultad.getLongitud(),0 , 0));
-		primerpanel(dificultad,panelMinador);
+	
+		
 		
 	}
-	private void primerpanel(Dificultad dificultad, JPanel panel) {
-		for (int i=0;i<dificultad.getLongitud();i++) {
-			for(int j=0;j<dificultad.getLongitud();j++) {
-				BontoncCasilla button = new BontoncCasilla();
-				button.setBackground(new Color(112, 112, 112));
-				button.setBorder(new LineBorder(new Color(255,255,255)));
-				panel.add(button);
-			}
-			
-			
-		}
+	
 		
-	}
+		
+	
 	
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		
