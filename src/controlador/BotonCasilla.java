@@ -1,22 +1,20 @@
-package modelo;
+package controlador;
+
+import java.awt.Color;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.text.AbstractDocument.Content;
 
-public class Botonera extends JPanel {
+import modelo.Coordenada;
 
+public class BotonCasilla extends JButton {
 	private Coordenada coordenada;
-	
 
-	public Botonera() {
+	public BotonCasilla(Coordenada coordenada) {
 		super();
 		this.coordenada = coordenada;
-		
-	}
-
 	
-
+	}
+	
 	public Coordenada getCoordenada() {
 		return coordenada;
 	}
@@ -25,4 +23,5 @@ public class Botonera extends JPanel {
 		this.coordenada = coordenada;
 	}
 	
+
 }

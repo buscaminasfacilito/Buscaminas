@@ -23,8 +23,8 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
-import modelo.BontoncCasilla;
-import modelo.Botonera;
+import controlador.BotonCasilla;
+import controlador.Botonera;
 import modelo.Dificultad;
 
 import javax.swing.GroupLayout;
@@ -52,18 +52,21 @@ import java.awt.event.ActionEvent;
 
 
 public class UI extends JFrame {
-	Dificultad dificultad = Dificultad.facil;
+	
+	private JMenuItem mmFacil;
+	private JMenuItem mmMedio;
+	private JMenuItem mnDificil;
+	private Botonera panelMinador;
+	
 	private JPanel contentPane;
 
-	/**
-	 * Create the frame.
-	 */
 	public UI() {
 		setBackground(new Color(128, 128, 128));
 		setTitle("Buscaminas\r\n");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\angel\\git\\Buscaminas-1\\src\\MINA.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 740, 533);
+		setBounds(100, 100, 400, 600);
+		setResizable(false);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(128, 128, 128));
@@ -74,14 +77,14 @@ public class UI extends JFrame {
 		mmSelectorDificultad.setBackground(new Color(128, 128, 128));
 		menuBar.add(mmSelectorDificultad);
 		
-		JMenuItem mmFacil = new JMenuItem("Facil");
+		this.mmFacil = new JMenuItem("Facil");
 		
 		mmSelectorDificultad.add(mmFacil);
 		
-		JMenuItem mmMedio = new JMenuItem("Medio");
+		this.mmMedio = new JMenuItem("Medio");
 		mmSelectorDificultad.add(mmMedio);
 		
-		JMenuItem mnDificil = new JMenuItem("Dificil");
+		this.mnDificil = new JMenuItem("Dificil");
 		mmSelectorDificultad.add(mnDificil);
 		
 		JMenu mnNewMenu = new JMenu("Inicio");
@@ -98,10 +101,11 @@ public class UI extends JFrame {
 		Mensajes.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(Mensajes, BorderLayout.NORTH);
 		
-		Botonera panelMinador = new Botonera();
-	
+		panelMinador = new Botonera(Dificultad.medio);
+		
 		panelMinador.setBackground(new Color(128, 128, 128));
 		contentPane.add(panelMinador, BorderLayout.CENTER);
+
 		panelMinador.setLayout(new GridLayout(dificultad.getLongitud(), dificultad.getLongitud(),0 , 0));
 		primerpanel(dificultad,panelMinador);
 		
@@ -123,4 +127,27 @@ public class UI extends JFrame {
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		
 	}
+
+	public JMenuItem[] getDifficultyButton() {
+		return new JMenuItem[]{mmFacil,mmMedio,mnDificil};
+	}
+
+	public Botonera getPanelMinador() {
+		return panelMinador;
+	}
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
