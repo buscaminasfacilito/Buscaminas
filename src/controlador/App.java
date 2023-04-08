@@ -2,6 +2,7 @@ package controlador;
 
 import java.awt.EventQueue;
 
+import modelo.GestionSonidos;
 import vista.UI;
 
 public class App {
@@ -15,8 +16,9 @@ public class App {
 				try {
 					ParaUI frame = new ParaUI();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println("Error");	
 				}
 			}
 		});
