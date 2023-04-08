@@ -96,7 +96,7 @@ public class UI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JLabel Mensajes = new JLabel("Aqui_va_un_mensaje");
+		JLabel Mensajes = new JLabel(" ");
 		Mensajes.setFont(new Font("Tahoma", Font.PLAIN, 29));
 		Mensajes.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(Mensajes, BorderLayout.NORTH);

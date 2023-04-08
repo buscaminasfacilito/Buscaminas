@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import modelo.Coordenada;
 import modelo.Densidad;
 import modelo.Dificultad;
+import modelo.GestionSonidos;
 import modelo.GestionTablero;
 import modelo.Tablero;
 import modelo.TableroAleatorio;
@@ -22,7 +23,7 @@ public class ParaUI extends UI{
 	
 	private GestionTablero miGestion;
 	private MouseListener mouseListener;
-	
+	protected GestionSonidos gestionSonidos = new GestionSonidos();
 	public ParaUI() {
 		behaviourDifficultyButtons(getDifficultyButton());
 		this.miGestion = new GestionTablero(Dificultad.medio.getLongitud());
@@ -135,6 +136,7 @@ public class ParaUI extends UI{
 					public void actionPerformed(ActionEvent e) {
 						Coordenada cordenadasBoton = ((BotonCasilla)e.getSource()).getCoordenada();
 						miGestion.hacerMovimiento(cordenadasBoton);
+						gestionSonidos.reproduciSonido("button-19.wav");
 						actualizarTablero();
 						
 					}
@@ -150,10 +152,12 @@ public class ParaUI extends UI{
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                	GestionSonidos gestionSonidos = new GestionSonidos();
                     Victoria frame = new Victoria();
                     frame.setVisible(true);
+                    gestionSonidos.reproduciSonido("level-win-6416.wav");
                 } catch (Exception e) {
-                    e.printStackTrace();
+                	System.out.println("Error");
                 }
             }
         });
@@ -162,8 +166,10 @@ public class ParaUI extends UI{
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                	GestionSonidos gestionSonidos = new GestionSonidos();
                     Derrota frame = new Derrota();
                     frame.setVisible(true);
+                    gestionSonidos.reproduciSonido("SonidoGameOVer.wav");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
