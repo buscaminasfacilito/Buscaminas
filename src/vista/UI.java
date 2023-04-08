@@ -93,19 +93,19 @@ public class UI extends JFrame {
 		this.mnDificil = new JMenuItem("Dificil");
 		mmSelectorDificultad.add(mnDificil);
 		
-		JMenu mnNewMenu = new JMenu("Inicio");
-		menuBar.add(mnNewMenu);
-		
 		lblVolumen = new JLabel("Volumen");
 		menuBar.add(lblVolumen);
 		
 		slider = new JSlider();
 		slider.setMaximum(80);
 		slider.setForeground(new Color(128, 128, 128));
+		slider.setBackground(new Color(128,128,128));
 		menuBar.add(slider);
+
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(128, 128, 128));
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
+		
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
