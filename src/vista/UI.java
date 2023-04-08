@@ -26,6 +26,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import controlador.BotonCasilla;
 import controlador.Botonera;
 import modelo.Dificultad;
+import modelo.GestionSonidos;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -48,6 +49,9 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSlider;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 
 
@@ -57,8 +61,10 @@ public class UI extends JFrame {
 	private JMenuItem mmMedio;
 	private JMenuItem mnDificil;
 	private Botonera panelMinador;
-	
+	private GestionSonidos gestionSonidos;
 	private JPanel contentPane;
+	private JLabel lblVolumen;
+	private JSlider slider;
 
 	public UI() {
 		setBackground(new Color(128, 128, 128));
@@ -89,6 +95,14 @@ public class UI extends JFrame {
 		
 		JMenu mnNewMenu = new JMenu("Inicio");
 		menuBar.add(mnNewMenu);
+		
+		lblVolumen = new JLabel("Volumen");
+		menuBar.add(lblVolumen);
+		
+		slider = new JSlider();
+		slider.setMaximum(80);
+		slider.setForeground(new Color(128, 128, 128));
+		menuBar.add(slider);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(128, 128, 128));
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -132,6 +146,13 @@ public class UI extends JFrame {
 		panelMinador.quitHover(boton);
 	}
 	
+	public JSlider getSlider() {
+		return slider;
+	}
+	
+	public void setSlider(JSlider slider) {
+		this.slider = slider;
+	}
 	
 	
 	

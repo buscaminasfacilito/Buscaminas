@@ -14,13 +14,11 @@ public class App {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GestionSonidos gestionSonidos = new GestionSonidos();
 					ParaUI frame = new ParaUI();
 					frame.setVisible(true);
-					gestionSonidos.reproducirMusica("musica1.wav");
 					
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println("Error");	
 				}
 			}
 		});
