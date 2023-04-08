@@ -31,9 +31,6 @@ public class GestionSonidos {
 		catch (Exception e) {
 			// TODO: handle exception
 		}
-		{
-			
-		}
 	}
 
 	public Clip cargarSonido(String nombre) {
@@ -87,8 +84,13 @@ public class GestionSonidos {
 		gainEfect.setValue(volumen);
 	}
 
-	public void pararMusica() {
-		clip.stop();
+	public void pararMusica() throws LineUnavailableException {
+		clip.close();
+		clip.open();
+		clipEfect.close();
+		clipEfect.open();
+		clipEffectVictoria.close();;
+		clipEffectDerrota.open();
 	}
 
 	public float getVolumen() {
@@ -99,12 +101,15 @@ public class GestionSonidos {
 		this.volumen = volumen;
 	}
 	public void reproducirEfecto() {
+		clipEfect.setMicrosecondPosition(0);
 		clipEfect.start();
 	}
 	public void reproducirEfectoVictoria() {
+		clipEfect.setMicrosecondPosition(0);
 		clipEffectVictoria.start();
 	}
 	public void reproducirEfectoDerrota() {
+		clipEffectDerrota.setMicrosecondPosition(0);
 		clipEffectDerrota.start();
 	}
 }

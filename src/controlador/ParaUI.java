@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.JMenuItem;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -43,7 +44,7 @@ public class ParaUI extends UI {
 	private void listenerSliceControl() {
 		JSlider slider = getSlider();
 		slider.addChangeListener(new ChangeListener() {
-
+			
 			public void stateChanged(ChangeEvent e) {
 				float volumenActtual = getSlider().getValue();
 				gestionSonidos.cambiarVolumen(volumenActtual);
@@ -154,7 +155,6 @@ public class ParaUI extends UI {
 	// COMPORTAMIENTO BOTON JUEGO
 	public void behaviourGameButtons() {
 		BotonCasilla tableroBotones[][] = getPanelMinador().getBotones();
-
 		for (int i = 0; i < tableroBotones.length; i++) {
 			for (int j = 0; j < tableroBotones[0].length; j++) {
 				tableroBotones[i][j].addActionListener(new ActionListener() {
@@ -212,7 +212,6 @@ public class ParaUI extends UI {
 		gestionSonidos.reproducirEfectoVictoria();
 	}
 	private void reprodicirEfecto() {
-		System.out.println("haSDHASHDAHJKSDBAJSKHDASJKH DVGKJASH");
 		gestionSonidos.reproducirEfecto();
 	}
 
