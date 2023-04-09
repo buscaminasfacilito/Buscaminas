@@ -1,16 +1,16 @@
 package modelo;
 
-import controlador.BotonCasilla;
-
 public class GestionTablero {
 
 	private TableroAleatorio miTablero;
 	private boolean isPrimerMovimiento;
 	private int numeroMinas;
+	private Dificultad dificultadTablero;
 	
-	public GestionTablero(int lado) {
-		this.numeroMinas = 15;
-		this.miTablero = new TableroAleatorio(lado);
+	public GestionTablero(Dificultad difConstructor) {
+		this.dificultadTablero = difConstructor;
+		this.numeroMinas = (int) (Math.pow(difConstructor.getLongitud(), 2) * 0.2);
+		this.miTablero = new TableroAleatorio(difConstructor.getLongitud());
 		this.isPrimerMovimiento=true;
 	}
 	
@@ -29,6 +29,12 @@ public class GestionTablero {
 		return miTablero;
 	}
 	
+	public Dificultad getDificultad() {
+		return this.dificultadTablero;
+	}
 	
+	public int getNumeroMinas() {
+		return this.numeroMinas;
+	}
 	
 }

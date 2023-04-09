@@ -1,16 +1,11 @@
 package controlador;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
-import javax.swing.text.AbstractDocument.Content;
 
 import modelo.Coordenada;
 import modelo.Dificultad;
@@ -18,7 +13,8 @@ import modelo.Dificultad;
 public class Botonera extends JPanel {
 	private BotonCasilla[][] botones;
 	private Color base = new Color(200,200,200);
-	private Color hovered = new Color(base.getRed()-50,base.getGreen()-50,base.getBlue()-50);
+	private Color clicked = new Color(base.getRed()-50,base.getGreen()-50,base.getBlue()-50);
+	private Color hovered = new Color(base.getRed()-20,base.getGreen()-20,base.getBlue()-20);
 	public Botonera(Dificultad dificultad) {
 		super();
 		crearBotonera(dificultad);
@@ -39,7 +35,6 @@ public class Botonera extends JPanel {
 				botones[i][j].setFont(new Font("Arial",Font.CENTER_BASELINE,25));
 				add(botones[i][j]);
 			}
-		
 		}
 	}
 	
@@ -61,8 +56,16 @@ public class Botonera extends JPanel {
 		boton.setBackground(base);
 	}
 	
-	
+	public void setClicked(BotonCasilla boton) {
+		boton.setBackground(clicked);
+	}
 
-
+	public void disableButtons() {
+		for (int i = 0; i < botones.length; i++) {
+			for (int j = 0; j < botones[i].length; j++) {
+				botones[i][j].setEnabled(false);
+			}
+		}
+	}
 	
 }

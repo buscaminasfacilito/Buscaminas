@@ -2,7 +2,6 @@ package controlador;
 
 import java.awt.EventQueue;
 
-
 import vista.Derrota;
 import vista.Victoria;
 

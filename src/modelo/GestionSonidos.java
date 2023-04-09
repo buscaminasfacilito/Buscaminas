@@ -15,7 +15,7 @@ public class GestionSonidos {
 	private Clip sonidoBoton;
 	private Clip sonidoVictoria;
 	private Clip sonidoDerrota;
-	private float volumen=-10.0f;
+	private float volumen=-20.0f;
 	
 	public GestionSonidos() {
 		super();
@@ -74,13 +74,8 @@ public class GestionSonidos {
 		//System.out.println(volumenActual);
 	}
 
-	public void pararMusica() throws LineUnavailableException {
-		musica.close();
-		musica.open();
-		sonidoBoton.close();
-		sonidoBoton.open();
-		sonidoVictoria.close();;
-		sonidoDerrota.open();
+	public void pararMusica(){
+		musica.stop();
 	}
 
 	public float getVolumen() {
