@@ -1,5 +1,7 @@
 package modelo;
 
+import java.io.File;
+
 public class MainParaPruebasGuarro {
 	public static void main(String[] args) {
 		TableroAleatorio tablero = new TableroAleatorio(10);
@@ -14,6 +16,7 @@ public class MainParaPruebasGuarro {
 		System.out.println();
 		tablero.showCasillasDesveladas();
 		
+
 		
 	}
 }

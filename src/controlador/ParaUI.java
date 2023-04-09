@@ -29,16 +29,15 @@ public class ParaUI extends UI {
 
 	private GestionTablero miGestion;
 	private MouseListener mouseListener;
-	protected GestionSonidos gestionSonidos = new GestionSonidos("button-19.wav", "SonidoGameOVer.wav",
-			"level-win-6416.wav");
+	protected GestionSonidos gestionSonidos = new GestionSonidos();
 
 	public ParaUI() {
 		behaviourDifficultyButtons(getDifficultyButton());
 		this.miGestion = new GestionTablero(Dificultad.medio.getLongitud());
 		createMouseListener();
 		behaviourGameButtons();
-		gestionSonidos.reproducirMusica("MainThemeBusca16BITS.wav");
 		listenerSliceControl();
+		gestionSonidos.reproducirMusica();
 	}
 
 	private void listenerSliceControl() {
@@ -46,9 +45,8 @@ public class ParaUI extends UI {
 		slider.addChangeListener(new ChangeListener() {
 			
 			public void stateChanged(ChangeEvent e) {
-				float volumenActtual = getSlider().getValue();
-				gestionSonidos.cambiarVolumen(volumenActtual);
-				System.out.println(getSlider().getValue());
+				float volumenActual = getSlider().getValue();
+				gestionSonidos.cambiarVolumen(volumenActual);
 			}
 		});
 
