@@ -11,10 +11,10 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class GestionSonidos {
-	Clip musica;
-	Clip sonidoBoton;
-	Clip sonidoVictoria;
-	Clip sonidoDerrota;
+	private Clip musica;
+	private Clip sonidoBoton;
+	private Clip sonidoVictoria;
+	private Clip sonidoDerrota;
 	private float volumen=-10.0f;
 	
 	public GestionSonidos() {
