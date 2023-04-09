@@ -1,14 +1,6 @@
 package utiles;
 
 
-import java.awt.Color;
-
-import javax.swing.JButton;
-
-import modelo.Coordenada;
-import modelo.Tablero;
-
-
 public class Utiles {
 	
 	public  static int dameNumero(int limite) {
@@ -22,14 +14,5 @@ public class Utiles {
 				{ +1, +1 } };
 		return posicion[lugar];
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

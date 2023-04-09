@@ -1,7 +1,5 @@
 package vista;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,23 +7,14 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Frame;
 
 import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Victoria extends JFrame {
 
 	private JPanel contentPane;
 	public static Victoria frame = new Victoria();
 	public static boolean visible = true;
-	/**
-	 * Launch the application.
-	 */
-	
 
 	/**
 	 * Create the frame.

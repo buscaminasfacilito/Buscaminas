@@ -1,6 +1,5 @@
 package vista;
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -15,12 +14,13 @@ import modelo.Dificultad;
 import javax.swing.JMenuBar;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.JMenu;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
 import javax.swing.JMenuItem;
 import javax.swing.JSlider;
-
 
 
 public class UI extends JFrame {
@@ -44,9 +44,11 @@ public class UI extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(128, 128, 128));
 		menuBar.setMargin(new Insets(0, 0, 0, 3));
+		menuBar.setPreferredSize(new Dimension(200,30));
 		setJMenuBar(menuBar);
 		
 		JMenu mmSelectorDificultad = new JMenu("Dificultad");
+		mmSelectorDificultad.setForeground(Color.white);
 		mmSelectorDificultad.setBackground(new Color(128, 128, 128));
 		menuBar.add(mmSelectorDificultad);
 		
@@ -61,10 +63,11 @@ public class UI extends JFrame {
 		mmSelectorDificultad.add(mnDificil);
 		
 		lblVolumen = new JLabel("Volumen");
+		lblVolumen.setForeground(Color.white);
 		menuBar.add(lblVolumen);
 		
 		slider = new JSlider(-80,6);
-		slider.setValue(-10);
+		slider.setValue(-20);
 		slider.setForeground(new Color(128, 128, 128));
 		slider.setBackground(new Color(128,128,128));
 		menuBar.add(slider);
@@ -113,6 +116,10 @@ public class UI extends JFrame {
 		panelMinador.quitHover(boton);
 	}
 	
+	public void setClicked(BotonCasilla boton) {
+		panelMinador.setClicked(boton);
+	}
+	
 	public JSlider getSlider() {
 		return slider;
 	}
@@ -120,13 +127,5 @@ public class UI extends JFrame {
 	public void setSlider(JSlider slider) {
 		this.slider = slider;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

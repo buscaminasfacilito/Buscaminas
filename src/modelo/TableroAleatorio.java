@@ -27,7 +27,7 @@ public class TableroAleatorio extends Tablero {
 	public boolean[][] getCasillasDesveladas() {
 		boolean[][] tableroDesveladas = new boolean[getAncho()][getAlto()];
 		for (int i = 0; i < getCasillas().length; i++) {
-			for (int j = 0; j < getCasillas()[0].length; j++) {
+			for (int j = 0; j < getCasillas()[i].length; j++) {
 
 				if (getCasilla(new Coordenada(i, j)).isVelada()) {
 					tableroDesveladas[i][j] = false;
@@ -100,6 +100,21 @@ public class TableroAleatorio extends Tablero {
 			}
 		}
 	}
+	
+	public int getCasillasVeladas() {
+		int casillasVeladas = 0;
+		
+		for (int i = 0; i < getCasillas().length; i++) {
+			for (int j = 0; j < getCasillas()[i].length; j++) {
+
+				if (getCasilla(new Coordenada(i, j)).isVelada()) {
+					casillasVeladas++;
+				}
+			}
+		}
+		
+		return casillasVeladas;
+	}
 
 	public void showMinasTablero() {
 		int value;
@@ -112,13 +127,6 @@ public class TableroAleatorio extends Tablero {
 			System.out.println();
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	//METODOS DE PRUEBA PARA PROBAR EN UN MAIN
 	public void showNumeroMinasContiguas() {
@@ -159,5 +167,7 @@ public class TableroAleatorio extends Tablero {
 		}
 
 	}
+	
+	
 			
 }

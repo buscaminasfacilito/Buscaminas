@@ -1,16 +1,24 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JSlider;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -29,17 +37,17 @@ public class ParaUI extends UI {
 
 	private GestionTablero miGestion;
 	private MouseListener mouseListener;
-	protected GestionSonidos gestionSonidos = new GestionSonidos();
+	protected GestionSonidos gestionSonidos;
 	private Victoria victoriaPanel;
 	private Derrota derrotaPanel;
 	
 	public ParaUI(Victoria victoriaPanel, Derrota derrotaPanel) {
+		this.gestionSonidos = new GestionSonidos();
 		this.victoriaPanel =  victoriaPanel;
 		this.derrotaPanel = derrotaPanel;
 		
-		
 		behaviourDifficultyButtons(getDifficultyButton());
-		this.miGestion = new GestionTablero(Dificultad.medio.getLongitud());
+		this.miGestion = new GestionTablero(Dificultad.medio);
 		createMouseListener();
 		behaviourGameButtons();
 		listenerSliceControl();
@@ -76,6 +84,7 @@ public class ParaUI extends UI {
 			}
 
 			public void mouseClicked(MouseEvent e) {
+				setClicked((BotonCasilla) e.getSource());
 			}
 		};
 	}
@@ -92,11 +101,21 @@ public class ParaUI extends UI {
 					boton.setText(" ");
 				} else {
 					boton.removeMouseListener(this.mouseListener);
-					setHover(boton);
+					setClicked(boton);
 					// SI ESTA DESVELADA Y ES BOMBA
 					if (miTablero.getCasilla(coordenadaActual).isMina()) {
-						boton.setText("BO");
-						MostrarDerrota();
+						Image img = Toolkit.getDefaultToolkit().getImage("resources/MINA.png").getScaledInstance(
+								boton.getWidth()-3, boton.getWidth()-3, Image.SCALE_DEFAULT);
+						boton.setHorizontalAlignment(SwingConstants.LEFT);
+						boton.setIcon(new ImageIcon(img));
+						boton.setBackground(new Color(190, 61, 61));
+						
+						miGestion.getDificultad().getLongitud();
+						
+						Botonera panelMinador = getPanelMinador();
+						panelMinador.disableButtons();
+						
+						mostrarDerrota();
 						reproducirEfectoDerrota();
 
 					} // SI ESTA DESVELADA Y NO ES BOMBA
@@ -124,7 +143,7 @@ public class ParaUI extends UI {
 		myButtons[0].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getPanelMinador().crearBotonera(Dificultad.facil);
-				miGestion = new GestionTablero(Dificultad.facil.getLongitud());
+				miGestion = new GestionTablero(Dificultad.facil);
 				behaviourGameButtons();
 				
 				esconderPaneles();
@@ -137,7 +156,7 @@ public class ParaUI extends UI {
 		myButtons[1].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getPanelMinador().crearBotonera(Dificultad.medio);
-				miGestion = new GestionTablero(Dificultad.medio.getLongitud());
+				miGestion = new GestionTablero(Dificultad.medio);
 				behaviourGameButtons();
 				
 				esconderPaneles();
@@ -150,7 +169,7 @@ public class ParaUI extends UI {
 		myButtons[2].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getPanelMinador().crearBotonera(Dificultad.dificil);
-				miGestion = new GestionTablero(Dificultad.dificil.getLongitud());
+				miGestion = new GestionTablero(Dificultad.dificil);
 				behaviourGameButtons();
 				
 				esconderPaneles();
@@ -175,6 +194,13 @@ public class ParaUI extends UI {
 						reprodicirEfecto();
 						actualizarTablero();
 
+						if(miGestion.getNumeroMinas() == miGestion.getMiTablero().getCasillasVeladas()) {
+							mostrarVictoria();
+							getPanelMinador().disableButtons();
+							reproducirEfectoVictoria();
+							
+						}
+					
 					}
 				});
 
@@ -187,11 +213,11 @@ public class ParaUI extends UI {
 	
 	
 	
-	public void MostrarVictoria() {
+	public void mostrarVictoria() {
 		victoriaPanel.setVisible(true);
 	}
 
-	public void MostrarDerrota() {
+	public void mostrarDerrota() {
 		derrotaPanel.setVisible(true);
 	}
 
