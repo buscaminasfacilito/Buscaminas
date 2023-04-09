@@ -1,57 +1,25 @@
 package vista;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Color;
 import java.awt.Insets;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.FlowLayout;
-import net.miginfocom.swing.MigLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
-
 import controlador.BotonCasilla;
 import controlador.Botonera;
 import modelo.Dificultad;
-import modelo.GestionSonidos;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JMenu;
-import javax.swing.JDesktopPane;
-import java.awt.Panel;
-import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
 import javax.swing.JMenuItem;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JSlider;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 
 
 
@@ -61,7 +29,6 @@ public class UI extends JFrame {
 	private JMenuItem mmMedio;
 	private JMenuItem mnDificil;
 	private Botonera panelMinador;
-	private GestionSonidos gestionSonidos;
 	private JPanel contentPane;
 	private JLabel lblVolumen;
 	private JSlider slider;
@@ -69,7 +36,7 @@ public class UI extends JFrame {
 	public UI() {
 		setBackground(new Color(128, 128, 128));
 		setTitle("Buscaminas\r\n");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\src\\MINA.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("resources/MINA.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 600);
 		setResizable(false);
@@ -96,8 +63,8 @@ public class UI extends JFrame {
 		lblVolumen = new JLabel("Volumen");
 		menuBar.add(lblVolumen);
 		
-		slider = new JSlider();
-		slider.setMaximum(80);
+		slider = new JSlider(-80,6);
+		slider.setValue(-10);
 		slider.setForeground(new Color(128, 128, 128));
 		slider.setBackground(new Color(128,128,128));
 		menuBar.add(slider);
