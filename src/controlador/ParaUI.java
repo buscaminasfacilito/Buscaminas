@@ -30,8 +30,14 @@ public class ParaUI extends UI {
 	private GestionTablero miGestion;
 	private MouseListener mouseListener;
 	protected GestionSonidos gestionSonidos = new GestionSonidos();
-
-	public ParaUI() {
+	private Victoria victoriaPanel;
+	private Derrota derrotaPanel;
+	
+	public ParaUI(Victoria victoriaPanel, Derrota derrotaPanel) {
+		this.victoriaPanel =  victoriaPanel;
+		this.derrotaPanel = derrotaPanel;
+		
+		
 		behaviourDifficultyButtons(getDifficultyButton());
 		this.miGestion = new GestionTablero(Dificultad.medio.getLongitud());
 		createMouseListener();
@@ -120,6 +126,8 @@ public class ParaUI extends UI {
 				getPanelMinador().crearBotonera(Dificultad.facil);
 				miGestion = new GestionTablero(Dificultad.facil.getLongitud());
 				behaviourGameButtons();
+				
+				esconderPaneles();
 				// actualizar
 				getPanelMinador().revalidate();
 				// System.out.println("Actualizado a facil");
@@ -131,6 +139,8 @@ public class ParaUI extends UI {
 				getPanelMinador().crearBotonera(Dificultad.medio);
 				miGestion = new GestionTablero(Dificultad.medio.getLongitud());
 				behaviourGameButtons();
+				
+				esconderPaneles();
 				// actualizar
 				getPanelMinador().revalidate();
 				// System.out.println("Actualizado a medio");
@@ -142,6 +152,8 @@ public class ParaUI extends UI {
 				getPanelMinador().crearBotonera(Dificultad.dificil);
 				miGestion = new GestionTablero(Dificultad.dificil.getLongitud());
 				behaviourGameButtons();
+				
+				esconderPaneles();
 				// actualizar
 				getPanelMinador().revalidate();
 				// System.out.println("Actualizado a dificil");
@@ -172,34 +184,15 @@ public class ParaUI extends UI {
 		}
 	}
 
-	public static void MostrarVictoria() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-					Victoria frame = new Victoria();
-					frame.setVisible(true);
-
-				} catch (Exception e) {
-					System.out.println("Error");
-				}
-			}
-		});
+	
+	
+	
+	public void MostrarVictoria() {
+		victoriaPanel.setVisible(true);
 	}
 
-	public static void MostrarDerrota() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-					Derrota frame = new Derrota();
-					frame.setVisible(true);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public void MostrarDerrota() {
+		derrotaPanel.setVisible(true);
 	}
 
 	private void reproducirEfectoDerrota() {
@@ -211,6 +204,11 @@ public class ParaUI extends UI {
 	}
 	private void reprodicirEfecto() {
 		gestionSonidos.reproducirEfecto();
+	}
+	
+	private void esconderPaneles() {
+		this.derrotaPanel.setVisible(false);
+		this.victoriaPanel.setVisible(false);
 	}
 
 }

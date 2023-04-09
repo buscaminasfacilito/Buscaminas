@@ -2,8 +2,9 @@ package controlador;
 
 import java.awt.EventQueue;
 
-import modelo.GestionSonidos;
-import vista.UI;
+
+import vista.Derrota;
+import vista.Victoria;
 
 public class App {
 
@@ -14,7 +15,10 @@ public class App {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ParaUI frame = new ParaUI();
+					Victoria panelVictoria = new Victoria();
+					Derrota panelDerrota = new Derrota();
+
+					ParaUI frame = new ParaUI(panelVictoria,panelDerrota);
 					frame.setVisible(true);
 					
 				} catch (Exception e) {
