@@ -12,8 +12,6 @@ import controlador.BotonCasilla;
 import controlador.Botonera;
 import modelo.Dificultad;
 import javax.swing.JMenuBar;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JMenu;
@@ -38,7 +36,7 @@ public class UI extends JFrame {
 		setTitle("Buscaminas\r\n");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("resources/MINA.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 400, 600);
+		setBounds(100, 100, 500, 600);
 		setResizable(false);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -89,10 +87,6 @@ public class UI extends JFrame {
 		
 		panelMinador.setBackground(new Color(128, 128, 128));
 		contentPane.add(panelMinador, BorderLayout.CENTER);
-		
-	}
-	
-	private static void addPopup(Component component, final JPopupMenu popup) {
 		
 	}
 

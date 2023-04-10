@@ -1,20 +1,13 @@
 package controlador;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.sound.sampled.LineUnavailableException;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JSlider;
@@ -23,11 +16,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import modelo.Coordenada;
-import modelo.Densidad;
 import modelo.Dificultad;
 import modelo.GestionSonidos;
 import modelo.GestionTablero;
-import modelo.Tablero;
 import modelo.TableroAleatorio;
 import vista.Derrota;
 import vista.UI;
@@ -78,7 +69,7 @@ public class ParaUI extends UI {
 					
 					if(miGestion.getNumeroMinas() == miGestion.getMiTablero().getCasillasVeladas()) {
 						mostrarVictoria();
-						getPanelMinador().disableButtons();
+						removeAllMouseListener();
 						reproducirEfectoVictoria();
 						
 					}
@@ -122,9 +113,16 @@ public class ParaUI extends UI {
 				BotonCasilla boton = getPanelMinador().getBoton(coordenadaActual);
 				// SI NO ESTÁ DESVELADA, IMPRIMIR VACIO
 				if(miTablero.getCasilla(coordenadaActual).isMarcada()) {
-					boton.setText("F");
+
+					
+					Image flagIMG = Toolkit.getDefaultToolkit().getImage("resources/FLAG.png").getScaledInstance(
+							boton.getWidth()-3, boton.getWidth()-3, Image.SCALE_DEFAULT);
+					boton.setHorizontalAlignment(SwingConstants.LEFT);
+					
+					boton.setIcon(new ImageIcon(flagIMG));
+					
 				}else if (miTablero.getCasilla(coordenadaActual).isVelada()) {
-					boton.setText(" ");
+					boton.setIcon(null);
 				}else {
 					
 					boton.removeMouseListener(boton.getMouseListeners()[1]);
@@ -140,9 +138,7 @@ public class ParaUI extends UI {
 						boton.setBackground(new Color(190, 61, 61));
 						
 						miGestion.getDificultad().getLongitud();
-						
-						Botonera panelMinador = getPanelMinador();
-						//panelMinador.disableButtons();
+
 						removeAllMouseListener();
 						mostrarDerrota();
 						reproducirEfectoDerrota();
