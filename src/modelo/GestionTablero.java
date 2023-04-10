@@ -1,5 +1,7 @@
 package modelo;
 
+import controlador.BotonCasilla;
+
 public class GestionTablero {
 
 	private TableroAleatorio miTablero;
@@ -22,12 +24,18 @@ public class GestionTablero {
 			this.isPrimerMovimiento = false;
 		}
 		
-		miTablero.desvelarContiguas(cordenada);
+		else if(!miTablero.getCasilla(cordenada).isVelada()) {
+			miTablero.desvelarAlrededorDeSeleccionada(cordenada);
+		}
+
+		else {		
+			miTablero.desvelarContiguas(cordenada);
+		}
 	}
 	public void marcarCasilla(Coordenada cordenada) {
-		if(miTablero.getCasilla(cordenada).isMarcada()) {
+		if(miTablero.getCasilla(cordenada).isMarcada() && miTablero.getCasilla(cordenada).isVelada()) {
 			miTablero.getCasilla(cordenada).setMarcada(false);			
-		}else {
+		}else if(miTablero.getCasilla(cordenada).isVelada()) {
 			miTablero.getCasilla(cordenada).setMarcada(true);
 		}
 	}
