@@ -69,7 +69,26 @@ public class ParaUI extends UI {
 	private void createMouseListener() {
 		this.mouseListener = new MouseListener() {
 
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {				
+				Coordenada cordenadasBoton = ((BotonCasilla) e.getSource()).getCoordenada();
+				//CLICK IZQUIERDO
+				if(e.getButton()==1) {
+					miGestion.hacerMovimiento(cordenadasBoton);
+					reprodicirEfecto();
+					actualizarTablero();
+					
+					if(miGestion.getNumeroMinas() == miGestion.getMiTablero().getCasillasVeladas()) {
+						mostrarVictoria();
+						getPanelMinador().disableButtons();
+						reproducirEfectoVictoria();
+						
+					}
+				}
+				//CLICK DERECHO
+				if(e.getButton()==3) {
+					miGestion.marcarCasilla(cordenadasBoton);
+					actualizarTablero();
+				}
 			}
 
 			public void mousePressed(MouseEvent e) {
@@ -85,21 +104,25 @@ public class ParaUI extends UI {
 
 			public void mouseClicked(MouseEvent e) {
 				setClicked((BotonCasilla) e.getSource());
+				
 			}
 		};
 	}
 
 	public void actualizarTablero() {
 		TableroAleatorio miTablero = miGestion.getMiTablero();
+		//miTablero.showMinasTablero();
 
 		for (int i = 0; i < miTablero.getAncho(); i++) {
 			for (int j = 0; j < miTablero.getAlto(); j++) {
 				Coordenada coordenadaActual = new Coordenada(i, j);
 				BotonCasilla boton = getPanelMinador().getBoton(coordenadaActual);
 				// SI NO ESTÁ DESVELADA, IMPRIMIR VACIO
-				if (miTablero.getCasilla(coordenadaActual).isVelada()) {
+				if(miTablero.getCasilla(coordenadaActual).isMarcada()) {
+					boton.setText("F");
+				}else if (miTablero.getCasilla(coordenadaActual).isVelada()) {
 					boton.setText(" ");
-				} else {
+				}else {
 					boton.removeMouseListener(this.mouseListener);
 					setClicked(boton);
 					// SI ESTA DESVELADA Y ES BOMBA
@@ -186,26 +209,7 @@ public class ParaUI extends UI {
 		BotonCasilla tableroBotones[][] = getPanelMinador().getBotones();
 		for (int i = 0; i < tableroBotones.length; i++) {
 			for (int j = 0; j < tableroBotones[0].length; j++) {
-				tableroBotones[i][j].addActionListener(new ActionListener() {
-
-					public void actionPerformed(ActionEvent e) {
-						Coordenada cordenadasBoton = ((BotonCasilla) e.getSource()).getCoordenada();
-						miGestion.hacerMovimiento(cordenadasBoton);
-						reprodicirEfecto();
-						actualizarTablero();
-
-						if(miGestion.getNumeroMinas() == miGestion.getMiTablero().getCasillasVeladas()) {
-							mostrarVictoria();
-							getPanelMinador().disableButtons();
-							reproducirEfectoVictoria();
-							
-						}
-					
-					}
-				});
-
 				tableroBotones[i][j].addMouseListener(this.mouseListener);
-
 			}
 		}
 	}

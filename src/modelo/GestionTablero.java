@@ -24,6 +24,13 @@ public class GestionTablero {
 		
 		miTablero.desvelarContiguas(cordenada);
 	}
+	public void marcarCasilla(Coordenada cordenada) {
+		if(miTablero.getCasilla(cordenada).isMarcada()) {
+			miTablero.getCasilla(cordenada).setMarcada(false);			
+		}else {
+			miTablero.getCasilla(cordenada).setMarcada(true);
+		}
+	}
 
 	public TableroAleatorio getMiTablero() {
 		return miTablero;
