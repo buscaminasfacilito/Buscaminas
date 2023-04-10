@@ -123,6 +123,7 @@ public class ParaUI extends UI {
 					
 				}else if (miTablero.getCasilla(coordenadaActual).isVelada()) {
 					boton.setIcon(null);
+					boton.setHorizontalAlignment(SwingConstants.CENTER);
 				}else {
 					
 					boton.removeMouseListener(boton.getMouseListeners()[1]);
