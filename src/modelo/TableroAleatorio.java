@@ -1,11 +1,7 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
-import utiles.Utiles;
 
 public class TableroAleatorio extends Tablero {
 	private boolean terminado = false;
@@ -68,11 +64,10 @@ public class TableroAleatorio extends Tablero {
 	public void desvelarAlrededorDeSeleccionada(Coordenada lugar) {
 		for (int i = lugar.getPosX()-1; i <= lugar.getPosX()+1; i++) {
 			for (int j = lugar.getPosY()-1; j <= lugar.getPosY()+1; j++) {
-				if(isInToBounds(lugar)) {
+				if(isInToBounds(new Coordenada(i,j))) {
 					desvelarContiguas(new Coordenada(i, j));
 				}
 			}
-		
 		}
 	}
 
