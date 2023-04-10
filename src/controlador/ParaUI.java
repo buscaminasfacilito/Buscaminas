@@ -36,7 +36,6 @@ import vista.Victoria;
 public class ParaUI extends UI {
 
 	private GestionTablero miGestion;
-	private MouseListener mouseListener;
 	protected GestionSonidos gestionSonidos;
 	private Victoria victoriaPanel;
 	private Derrota derrotaPanel;
@@ -48,7 +47,7 @@ public class ParaUI extends UI {
 		
 		behaviourDifficultyButtons(getDifficultyButton());
 		this.miGestion = new GestionTablero(Dificultad.medio);
-		createMouseListener();
+		createMouseListener(true);
 		behaviourGameButtons();
 		listenerSliceControl();
 		gestionSonidos.reproducirMusica();
@@ -66,9 +65,9 @@ public class ParaUI extends UI {
 
 	}
 
-	private void createMouseListener() {
-		this.mouseListener = new MouseListener() {
-
+	private MouseListener createMouseListener(boolean velada) {
+		MouseListener mouseListener = new MouseListener() {
+			private boolean hover=velada;
 			public void mouseReleased(MouseEvent e) {				
 				Coordenada cordenadasBoton = ((BotonCasilla) e.getSource()).getCoordenada();
 				//CLICK IZQUIERDO
@@ -95,26 +94,30 @@ public class ParaUI extends UI {
 			}
 
 			public void mouseExited(MouseEvent e) {
-				quitHover((BotonCasilla) e.getSource());
+				if(hover) quitHover((BotonCasilla) e.getSource());
+
+
 			}
 
 			public void mouseEntered(MouseEvent e) {
-				setHover((BotonCasilla) e.getSource());
+				if(hover)setHover((BotonCasilla) e.getSource());
 			}
 
 			public void mouseClicked(MouseEvent e) {
 				setClicked((BotonCasilla) e.getSource());
 				
 			}
+			
 		};
+		return mouseListener;
 	}
 
 	public void actualizarTablero() {
 		TableroAleatorio miTablero = miGestion.getMiTablero();
 		//miTablero.showMinasTablero();
-
-		for (int i = 0; i < miTablero.getAncho(); i++) {
-			for (int j = 0; j < miTablero.getAlto(); j++) {
+		boolean terminado = false;
+		for (int i = 0; i < miTablero.getAncho() && !terminado; i++) {
+			for (int j = 0; j < miTablero.getAlto() && !terminado; j++) {
 				Coordenada coordenadaActual = new Coordenada(i, j);
 				BotonCasilla boton = getPanelMinador().getBoton(coordenadaActual);
 				// SI NO ESTÁ DESVELADA, IMPRIMIR VACIO
@@ -123,10 +126,13 @@ public class ParaUI extends UI {
 				}else if (miTablero.getCasilla(coordenadaActual).isVelada()) {
 					boton.setText(" ");
 				}else {
-					boton.removeMouseListener(this.mouseListener);
+					
+					boton.removeMouseListener(boton.getMouseListeners()[1]);
+					boton.addMouseListener(createMouseListener(false));
 					setClicked(boton);
 					// SI ESTA DESVELADA Y ES BOMBA
 					if (miTablero.getCasilla(coordenadaActual).isMina()) {
+						
 						Image img = Toolkit.getDefaultToolkit().getImage("resources/MINA.png").getScaledInstance(
 								boton.getWidth()-3, boton.getWidth()-3, Image.SCALE_DEFAULT);
 						boton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -136,11 +142,11 @@ public class ParaUI extends UI {
 						miGestion.getDificultad().getLongitud();
 						
 						Botonera panelMinador = getPanelMinador();
-						panelMinador.disableButtons();
-						
+						//panelMinador.disableButtons();
+						removeAllMouseListener();
 						mostrarDerrota();
 						reproducirEfectoDerrota();
-
+						terminado=true;
 					} // SI ESTA DESVELADA Y NO ES BOMBA
 					else {
 						int minasAlrededor = miTablero.getCasilla(coordenadaActual).getMinasAlrededor();
@@ -159,7 +165,16 @@ public class ParaUI extends UI {
 		boton.removeMouseListener(null);
 		;
 	}
-
+	private void removeAllMouseListener() {
+        BotonCasilla[][] casillas = getPanelMinador().getBotones();
+        for(int i=0;i<casillas.length;i++) {
+            for(int j=0;j<casillas[0].length;j++) {
+            	if(casillas[i][j].getMouseListeners().length==2) {
+            		casillas[i][j].removeMouseListener(casillas[i][j].getMouseListeners()[1]);
+            	}
+            }
+        }
+    }
 	// COMPORTAMIENTO BOTON DIFICULTADES
 	public void behaviourDifficultyButtons(JMenuItem myButtons[]) {
 		// FACIL
@@ -209,7 +224,7 @@ public class ParaUI extends UI {
 		BotonCasilla tableroBotones[][] = getPanelMinador().getBotones();
 		for (int i = 0; i < tableroBotones.length; i++) {
 			for (int j = 0; j < tableroBotones[0].length; j++) {
-				tableroBotones[i][j].addMouseListener(this.mouseListener);
+				tableroBotones[i][j].addMouseListener(createMouseListener(true));
 			}
 		}
 	}
@@ -240,5 +255,6 @@ public class ParaUI extends UI {
 		this.derrotaPanel.setVisible(false);
 		this.victoriaPanel.setVisible(false);
 	}
-
+	
+	
 }

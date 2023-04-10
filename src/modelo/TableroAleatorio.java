@@ -43,7 +43,9 @@ public class TableroAleatorio extends Tablero {
 	public void desvelarContiguas(Coordenada lugar) {
 		// tablero, lugar
 		Casilla casilla = getCasilla(lugar);
+		//System.out.println(lugar.getPosX()+" "+lugar.getPosY());
 		if (casilla.isVelada() && !casilla.isMarcada()) {
+			
 			casilla.setVelada(false);
 			if (!casilla.isMina()) {
 				if (casilla.getMinasAlrededor() == 0) {
@@ -60,6 +62,17 @@ public class TableroAleatorio extends Tablero {
 					}
 				}
 			}
+		}
+	}
+	
+	public void desvelarAlrededorDeSeleccionada(Coordenada lugar) {
+		for (int i = lugar.getPosX()-1; i <= lugar.getPosX()+1; i++) {
+			for (int j = lugar.getPosY()-1; j <= lugar.getPosY()+1; j++) {
+				if(isInToBounds(lugar)) {
+					desvelarContiguas(new Coordenada(i, j));
+				}
+			}
+		
 		}
 	}
 
