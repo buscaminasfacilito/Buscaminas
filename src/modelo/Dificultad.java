@@ -13,4 +13,16 @@ public enum Dificultad {
 		return longitud;
 	}
 	
+	public int getPorcentaje() {
+		switch(this.longitud) {
+		case 5:
+			return 15;
+		case 8:
+			return 20;
+		case 12:
+			return 25;
+		default:
+			return 20;
+		}
+	}
 }

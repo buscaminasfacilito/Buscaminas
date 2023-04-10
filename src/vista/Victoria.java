@@ -22,7 +22,7 @@ public class Victoria extends JFrame {
 	public Victoria() {
 		setBackground(new Color(128, 255, 128));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 443, 629);
+		setBounds(100, 100, 500, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(150, 255, 100));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

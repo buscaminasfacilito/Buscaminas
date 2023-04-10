@@ -11,7 +11,7 @@ public class GestionTablero {
 	
 	public GestionTablero(Dificultad difConstructor) {
 		this.dificultadTablero = difConstructor;
-		this.numeroMinas = (int) (Math.pow(difConstructor.getLongitud(), 2) * 0.2);
+		this.numeroMinas = (int) (Math.pow(difConstructor.getLongitud(), 2) * (difConstructor.getPorcentaje()/100f));
 		this.miTablero = new TableroAleatorio(difConstructor.getLongitud());
 		this.isPrimerMovimiento=true;
 	}
