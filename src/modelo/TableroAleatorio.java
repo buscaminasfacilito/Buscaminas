@@ -43,7 +43,7 @@ public class TableroAleatorio extends Tablero {
 	public void desvelarContiguas(Coordenada lugar) {
 		// tablero, lugar
 		Casilla casilla = getCasilla(lugar);
-		if (casilla.isVelada()) {
+		if (casilla.isVelada() && !casilla.isMarcada()) {
 			casilla.setVelada(false);
 			if (!casilla.isMina()) {
 				if (casilla.getMinasAlrededor() == 0) {
